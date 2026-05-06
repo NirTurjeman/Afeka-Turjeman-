@@ -1,0 +1,32 @@
+body {
+  font-family: Arial;
+  margin: 20px;
+}
+table {
+  border-collapse: collapse;
+}
+td,
+th {
+  border: 1px solid #777;
+  padding: 6px;
+}
+nav a {
+  margin-right: 10px;
+}
+p {
+  max-width: 75%;
+}
+.media-container {
+  display: flex;
+
+  gap: 20px; /* space between map and image */
+  max-width: 90%; /* keeps everything centered */
+}
+
+.media-container img,
+.media-container iframe {
+  width: 45%; /* makes both equal width */
+  height: 300px; /* same height for consistency */
+  object-fit: cover;
+  border-radius: 8px; /* optional – looks nicer */
+}
