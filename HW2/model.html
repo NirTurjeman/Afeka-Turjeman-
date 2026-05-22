@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HW2 CNN - מודל</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">HW2 CNN</a>
+    <nav>
+      <a class="active" href="model.html">מודל</a>
+      <a href="index.html">מילון</a>
+    </nav>
+  </header>
+
+  <main class="app-shell">
+    <section class="workspace">
+      <div class="canvas-panel">
+        <div class="canvas-head">
+          <div>
+            <p class="eyebrow">זיהוי של 3 צורות</p>
+            <h1>ציירו עיגול, ריבוע או משולש</h1>
+          </div>
+          <button id="clearCanvas" class="icon-button" title="ניקוי לוח">נקה</button>
+        </div>
+        <canvas id="drawCanvas" width="280" height="280" aria-label="לוח ציור לזיהוי צורה"></canvas>
+        <div class="class-buttons" aria-label="בחירת מחלקה לאימון">
+          <button data-label="circle">עיגול</button>
+          <button data-label="square">ריבוע</button>
+          <button data-label="triangle">משולש</button>
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <h2>תוצאת ניבוי</h2>
+        <div id="predictionName" class="prediction">טרם נבדק</div>
+        <div class="bars">
+          <div><span>עיגול</span><meter id="barCircle" min="0" max="1" value="0"></meter><b id="pctCircle">0%</b></div>
+          <div><span>ריבוע</span><meter id="barSquare" min="0" max="1" value="0"></meter><b id="pctSquare">0%</b></div>
+          <div><span>משולש</span><meter id="barTriangle" min="0" max="1" value="0"></meter><b id="pctTriangle">0%</b></div>
+        </div>
+        <div class="actions">
+          <button id="predictBtn">בדיקה / ניבוי</button>
+          <button id="addSampleBtn">הוסף אימון לציור</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="controls">
+      <h2>שליטה במודל</h2>
+      <div class="control-grid">
+        <label>שכבות
+          <input id="layersInput" type="number" min="1" max="3" value="2">
+        </label>
+        <label>פילטרים
+          <input id="filtersInput" type="number" min="2" max="8" value="6">
+        </label>
+        <label>גודל פילטר
+          <select id="kernelInput">
+            <option value="3">3x3</option>
+            <option value="5">5x5</option>
+          </select>
+        </label>
+        <label>קצב למידה
+          <input id="learningRateInput" type="number" min="0.0001" max="0.2" step="0.0001" value="0.001">
+        </label>
+        <label>Epochs
+          <input id="epochsInput" type="number" min="1" max="80" value="20">
+        </label>
+      </div>
+
+      <div class="actions stacked">
+        <button id="buildBtn">קבע פרמטרים ואתחל מודל</button>
+        <button id="exportBtn">Export Trained Model</button>
+        <button id="resetBtn">אתחול מלא</button>
+      </div>
+
+      <section class="weights-card" aria-labelledby="weightsTitle">
+        <div class="weights-card-head">
+          <h2 id="weightsTitle">משקלי המודל</h2>
+          <span id="weightsBadge">אין שמירה</span>
+        </div>
+        <dl class="weights-details">
+          <div><dt>מקור</dt><dd id="weightsSource">-</dd></div>
+          <div><dt>מבנה</dt><dd id="weightsShape">-</dd></div>
+          <div><dt>גודל</dt><dd id="weightsSize">-</dd></div>
+        </dl>
+        <button id="loadWeightsBtn">Load Weights</button>
+      </section>
+
+      <dl class="stats">
+        <div><dt>מצב</dt><dd id="statusText">מוכן</dd></div>
+        <div><dt>Epoch</dt><dd id="epochText">-</dd></div>
+        <div><dt>Loss</dt><dd id="lossText">-</dd></div>
+        <div><dt>Accuracy</dt><dd id="accuracyText">-</dd></div>
+        <div><dt>דגימות משתמש</dt><dd id="sampleCount">0</dd></div>
+        <div><dt>LocalStorage</dt><dd id="storageText">לא נטען</dd></div>
+      </dl>
+    </aside>
+  </main>
+
+  <script src="js/cnn.js"></script>
+  <script src="js/model-page.js"></script>
+</body>
+</html>

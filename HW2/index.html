@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HW2 CNN - מילון מושגים</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">HW2 CNN</a>
+    <nav>
+      <a href="model.html">מודל</a>
+      <a class="active" href="index.html">מילון</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">תרגיל 2</p>
+        <h1>מילון מושגים למודל CNN בדפדפן</h1>
+        <p>
+          מילון קבוע של מושגים שמופיעים בקוד ובתצוגת המודל: שכבות קונבולוציה,
+          אימון, ניבוי, משקלים, שגיאה ושמירת המודל ב-LocalStorage.
+        </p>
+      </div>
+      <a class="primary-link" href="model.html">מעבר לדף המודל</a>
+    </section>
+
+    <section class="toolbar">
+      <label for="searchTerm">חיפוש מושג</label>
+      <input id="searchTerm" type="search" placeholder="לדוגמה: ReLU, Epoch, Pooling">
+      <span id="termCount" class="counter"></span>
+    </section>
+
+    <section id="glossary" class="glossary" aria-live="polite"></section>
+  </main>
+
+  <script src="js/glossary.js"></script>
+</body>
+</html>
