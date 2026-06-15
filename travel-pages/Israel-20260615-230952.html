@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israel Travel Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Israel_map.svg/1200px-Israel_map.svg.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 48px;
+        }
+        .attractions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .attraction {
+            margin: 20px;
+            width: calc(33.33% - 20px);
+            background-color: #f7f7f7;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .attraction img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+</head>
+<body>
+<div class="hero">
+    <h1>Israel Travel Guide</h1>
+</div>
+<div class="attractions">
+    <div class="attraction">
+        <h2>Western Wall</h2>
+        <p>The Western Wall, also known as the Wailing Wall, is a remnant of the Second Temple in Jerusalem.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Western_Wall_in_Jerusalem.jpg/1200px-Western_Wall_in_Jerusalem.jpg" alt="Western Wall">
+        <p>Latitude: 31.7783, Longitude: 35.2304</p>
+    </div>
+    <div class="attraction">
+        <h2>Dead Sea</h2>
+        <p>The Dead Sea is a saltwater lake in the Jordan Rift Valley, known for its unique properties and stunning scenery.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Dead_Sea_from_space.jpg/1200px-Dead_Sea_from_space.jpg" alt="Dead Sea">
+        <p>Latitude: 31.4667, Longitude: 35.5333</p>
+    </div>
+    <div class="attraction">
+        <h2>Masada</h2>
+        <p>Masada is an ancient fortress in the Judean Desert, known for its stunning architecture and tragic history.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Masada_from_the_south.jpg/1200px-Masada_from_the_south.jpg" alt="Masada">
+        <p>Latitude: 31.4667, Longitude: 35.3667</p>
+    </div>
+    <div class="attraction">
+        <h2>Haifa</h2>
+        <p>Haifa is a coastal city in northern Israel, known for its stunning beaches and scenic views.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Haifa_bay.jpg/1200px-Haifa_bay.jpg" alt="Haifa">
+        <p>Latitude: 32.8167, Longitude: 34.9667</p>
+    </div>
+    <div class="attraction">
+        <h2>Ein Gedi</h2>
+        <p>Ein Gedi is a small oasis town in the Judean Desert, known for its stunning natural scenery and historic sites.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/En_Gedi_waterfall.jpg/1200px-En_Gedi_waterfall.jpg" alt="Ein Gedi">
+        <p>Latitude: 31.45, Longitude: 35.45</p>
+    </div>
+</div>
+<div class="map">
+    <div id="map" style="width: 100%; height: 600px;"></div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+<script>
+    var map = L.map('map').setView([31.7783, 35.2304], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+        subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    var markers = [
+        [31.7783, 35.2304, 'Western Wall'],
+        [31.4667, 35.5333, 'Dead Sea'],
+        [31.4667, 35.3667, 'Masada'],
+        [32.8167, 34.9667, 'Haifa'],
+        [31.45, 35.45, 'Ein Gedi']
+    ];
+    markers.forEach(function(marker) {
+        L.marker(marker.slice(0, 2)).addTo(map).bindPopup(marker[2]);
+    });
+</script>
+</body>
+</html>
