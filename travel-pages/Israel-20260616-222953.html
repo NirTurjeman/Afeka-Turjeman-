@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Israel – Travel Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+Yw+4Q6Vq7a8oNf2hP4x6i6OZ0e8YwL7G4Y3Z7zZ8=" crossorigin=""/>
+<style>
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#333;}
+  header{position:relative;overflow:hidden;height:60vh;background:url('https://images.unsplash.com/photo-1516185425396-5e1d6e9b7c7a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;}
+  header::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);}
+  .hero-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;text-align:center;}
+  .hero-text h1{font-size:3rem;margin:0;}
+  .hero-text p{font-size:1.2rem;}
+  main{padding:2rem;}
+  section{margin-bottom:3rem;}
+  h2{font-size:2rem;margin-bottom:1rem;color:#2c3e50;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+  .card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.1);transition:transform .2s;}
+  .card:hover{transform:translateY(-5px);}
+  .card img{width:100%;height:150px;object-fit:cover;}
+  .card-content{padding:1rem;}
+  .card-content h3{margin:0 0 .5rem;}
+  .card-content p{margin:0;font-size:.9rem;line-height:1.4;}
+  #map{width:100%;height:400px;border-radius:8px;}
+  .weather{display:flex;flex-wrap:wrap;gap:1rem;}
+  .weather .card{flex:1 1 200px;}
+  @media(max-width:600px){
+    header{height:40vh;}
+    .hero-text h1{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="hero-text">
+    <h1>Israel – Land of Wonders</h1>
+    <p>Discover ancient history, vibrant culture, and breathtaking landscapes.</p>
+  </div>
+</header>
+<main>
+  <section>
+    <h2>Top Attractions</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1525178420-8b9b0c9f7b4f?auto=format&fit=crop&w=400&q=80" alt="Masada">
+        <div class="card-content">
+          <h3>Masada</h3>
+          <p>Historic fortress overlooking the Dead Sea, a symbol of Jewish resilience.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1511225946013-4b0c1c4a8e3b?auto=format&fit=crop&w=400&q=80" alt="Jerusalem">
+        <div class="card-content">
+          <h3>Jerusalem</h3>
+          <p>Explore the Old City, Western Wall, and the Church of the Holy Sepulchre.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517602302552-471fe4b0e4b1?auto=format&fit=crop&w=400&q=80" alt="Dead Sea">
+        <div class="card-content">
+          <h3>Dead Sea</h3>
+          <p>Float in the lowest point on Earth and experience mineral-rich waters.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Tel Aviv">
+        <div class="card-content">
+          <h3>Tel Aviv</h3>
+          <p>Modern metropolis with beaches, nightlife, and historic Bauhaus architecture.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589217888421-3b0b9d7c1f9e?auto=format&fit=crop&w=400&q=80" alt="Galilee">
+        <div class="card-content">
+          <h3>Galilee</h3>
+          <p>Scenic landscapes, historic sites, and the Sea of Galilee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Explore on the Map</h2>
+    <div id="map"></div>
+  </section>
+
+  <section>
+    <h2>Restaurants</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1523986371872-9d3b1e1f3b6e?auto=format&fit=crop&w=400&q=80" alt="Restaurant 1">
+        <div class="card-content">
+          <h3>Shuk HaCarmel</h3>
+          <p>Fresh Mediterranean dishes in a bustling market setting.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcadc2b4?auto=format&fit=crop&w=400&q=80" alt="Restaurant 2">
+        <div class="card-content">
+          <h3>Taam</h3>
+          <p>Modern Israeli cuisine with seasonal ingredients.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" alt="Restaurant 3">
+        <div class="card-content">
+          <h3>Ouzeri</h3>
+          <p>Greek tavern offering grilled meats and local wines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Current Weather</h2>
+    <div class="weather">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80" alt="Weather">
+        <div class="card-content">
+          <h3>Tel Aviv</h3>
+          <p>22°C, Partly Cloudy</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1520242910015-8f9c2d8d9e1f?auto=format&fit=crop&w=400&q=80" alt="Weather">
+        <div class="card-content">
+          <h3>Jerusalem</h3>
+          <p>18°C, Clear Skies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Travel Tips</h2>
+    <ul>
+      <li>Best time to visit: March to May and September to November.</li>
+      <li>Respect local customs, especially in religious sites.</li>
+      <li>Carry cash for small markets; credit cards accepted in most hotels.</li>
+      <li>Stay hydrated, especially in desert
