@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israel Travel Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Israel_map.svg/1200px-Israel_map.svg.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        .attractions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .attraction {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .attraction img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .attraction h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .attraction p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .map {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>Israel Travel Guide</h1>
+        <p>Discover the beauty of Israel</p>
+    </header>
+    <main>
+        <section class="attractions">
+            <div class="attraction">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Masada_from_the_south.jpg/1200px-Masada_from_the_south.jpg" alt="Masada">
+                <h2>Masada</h2>
+                <p>Located on the edge of the Judean Desert, Masada is an ancient fortress built by King Herod the Great.</p>
+                <p>Latitude: 31.4667° N, Longitude: 35.3667° E</p>
+            </div>
+            <div class="attraction">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tel_Aviv_skyline.jpg/1200px-Tel_Aviv_skyline.jpg" alt="Tel Aviv">
+                <h2>Tel Aviv</h2>
+                <p>The second-largest city in Israel, Tel Aviv is known for its vibrant culture, beautiful beaches, and stunning architecture.</p>
+                <p>Latitude: 32.0833° N, Longitude: 34.7667° E</p>
+            </div>
+            <div class="attraction">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Dead_Sea.jpg/1200px-Dead_Sea.jpg" alt="Dead Sea">
+                <h2>Dead Sea</h2>
+                <p>The lowest point on Earth, the Dead Sea is a natural wonder that attracts visitors from around the world.</p>
+                <p>Latitude: 31.4667° N, Longitude: 35.3667° E</p>
+            </div>
+            <div class="attraction">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wailing_Wall.jpg/1200px-Wailing_Wall.jpg" alt="Western Wall">
+                <h2>Western Wall</h2>
+                <p>One of the holiest sites in Judaism, the Western Wall is a sacred place for prayer and reflection.</p>
+                <p>Latitude: 31.5° N, Longitude: 35.2167° E</p>
+            </div>
+            <div class="attraction">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Sea_of_Galilee.jpg/1200px-Sea_of_Galilee.jpg" alt="Sea of Galilee">
+                <h2>Sea of Galilee</h2>
+                <p>A beautiful lake in northern Israel, the Sea of Galilee is a popular spot for boating, fishing, and swimming.</p>
+                <p>Latitude: 32.8333° N, Longitude: 35.6667° E</p>
+            </div>
+        </section>
+        <section class="map">
+            <div id="map" style="width: 100%; height: 600px;"></div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([31.5, 35.2167], 8);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+            subdomains: ['a', 'b', 'c']
+        }).addTo(map);
+        var markers = [
+            [31.4667, 35.3667, 'Masada'],
+            [32.0833, 34.7667, 'Tel Aviv'],
+            [31.4667, 35.3667, 'Dead Sea'],
+            [31.5, 35.2167, 'Western Wall'],
+            [32.8333, 35.6667, 'Sea of Galilee']
+        ];
+        markers.forEach(function(marker) {
+            L.marker([marker[0], marker[1]]).addTo(map).bindPopup(marker[2]);
+        });
+    </script>
+</body>
+</html>
