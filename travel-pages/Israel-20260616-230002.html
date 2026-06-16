@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Israel: A Journey Through History and Nature</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+body { margin:0; font-family:Arial, sans-serif; background:#f4f7fb; color:#222; }
+.hero { padding:80px 20px; text-align:center; color:white; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); }
+.hero h1 { font-size:48px; margin:0 0 15px; }
+.hero p { font-size:20px; max-width:800px; margin:auto; }
+.container { max-width:1150px; margin:40px auto; padding:0 20px; }
+.intro { background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); margin-bottom:30px; font-size:18px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+.card { background:white; border-radius:18px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.1); }
+.card img { width:100%; height:190px; object-fit:cover; display:block; }
+.card-body { padding:20px; }
+.card h3 { margin-top:0; }
+.map-section { margin-top:45px; }
+#map { width:100%; height:430px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.12); }
+footer { text-align:center; padding:30px; color:#777; }
+</style>
+</head>
+<body>
+<section class="hero">
+  <h1>Explore Israel: A Journey Through History and Nature</h1>
+  <p>Discover the Land of Milk and Honey</p>
+</section>
+
+<main class="container">
+  <section class="intro">Israel, a crossroads of ancient civilizations and modern innovation, offers a tapestry of cultural, religious, and natural wonders. From the storied streets of Jerusalem to the vibrant nightlife of Tel Aviv, the rugged cliffs of Masada, the serene gardens of Haifa, and the therapeutic waters of the Dead Sea, each destination invites travelers to experience a unique blend of history, spirituality, and natural beauty.</section>
+  <section class="grid">
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jerusalem_Old_City_view_from_Mount_of_Olives.jpg" alt="Jerusalem Old City">
+    <div class="card-body">
+      <h3>Jerusalem Old City</h3>
+      <p>A UNESCO World Heritage Site, the Old City of Jerusalem is home to sacred sites such as the Western Wall, the Church of the Holy Sepulchre, and the Dome of the Rock. Its winding streets and bustling markets offer a glimpse into the city's layered past.</p>
+      <small>📍 31.7767, 35.2345</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tel_Aviv_Beach.jpg" alt="Tel Aviv Beaches">
+    <div class="card-body">
+      <h3>Tel Aviv Beaches</h3>
+      <p>The Mediterranean coastline of Tel Aviv boasts golden sands, lively promenades, and a vibrant beach culture. Whether you’re sunbathing, surfing, or dining by the sea, the city’s beaches are a hub of relaxation and entertainment.</p>
+      <small>📍 32.0853, 34.7818</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dead_Sea_by_David_Shankbone.jpg" alt="Masada">
+    <div class="card-body">
+      <h3>Masada</h3>
+      <p>Perched atop a volcanic plateau, Masada is a symbol of resilience and freedom. The ancient fortress, now a museum, provides panoramic views of the Judean Desert and the Dead Sea.</p>
+      <small>📍 31.9725, 35.7293</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Masada_seen_from_above.jpg" alt="Haifa Baha'i Gardens">
+    <div class="card-body">
+      <h3>Haifa Baha'i Gardens</h3>
+      <p>The terraced Baha'i Gardens in Haifa are famed for their stunning floral displays and sweeping views of the Mediterranean Sea. The gardens serve as a peaceful place of reflection and cultural exchange.</p>
+      <small>📍 32.794, 34.9928</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bahai_Gardens_Haifa.jpg" alt="Dead Sea">
+    <div class="card-body">
+      <h3>Dead Sea</h3>
+      <p>The lowest point on Earth, the Dead Sea offers buoyant waters and mineral-rich mud that are renowned for their therapeutic properties. The surrounding desert landscape provides a stark yet captivating backdrop.</p>
+      <small>📍 31.559, 35.4735</small>
+    </div>
+  </div>
+</section>
+  <section class="map-section">
+    <h2>Attractions Map</h2>
+    <div id="map"></div>
+  </section>
+</main>
+
+<footer>Generated automatically with n8n AI Travel Generator</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.addEventListener("load", function () {
+  const map = L.map("map").setView([31.5, 34.75], 7);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "© OpenStreetMap"
+  }).addTo(map);
+
+  
+  L.marker([31.7767, 35.2345]).addTo(map).bindPopup("Jerusalem Old City");
+
+
+  L.marker([32.0853, 34.7818]).addTo(map).bindPopup("Tel Aviv Beaches");
+
+
+  L.marker([31.9725, 35.7293]).addTo(map).bindPopup("Masada");
+
+
+  L.marker([32.794, 34.9928]).addTo(map).bindPopup("Haifa Baha'i Gardens");
+
+
+  L.marker([31.559, 35.4735]).addTo(map).bindPopup("Dead Sea");
+
+
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 500);
+});
+</script>
+</body>
+</html>
