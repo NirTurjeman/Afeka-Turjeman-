@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israel Travel Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Israel_map.svg/1200px-Israel_map.svg.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 48px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .attraction {
+            background-color: #f7f7f7;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .attraction h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .attraction p {
+            margin-bottom: 20px;
+        }
+        .map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Discover the Beauty of Israel</h1>
+    </div>
+    <div class="container">
+        <div class="attraction">
+            <h2>Western Wall</h2>
+            <p>The Western Wall, also known as the Wailing Wall, is a remnant of the Second Temple in Jerusalem.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Western_Wall_in_Jerusalem.jpg/1200px-Western_Wall_in_Jerusalem.jpg" alt="Western Wall">
+            <p>Latitude: 31.7793, Longitude: 35.2297</p>
+        </div>
+        <div class="attraction">
+            <h2>Dead Sea</h2>
+            <p>The Dead Sea is a saltwater lake in the Jordan Rift Valley, known for its unique properties and stunning scenery.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Dead_Sea.jpg/1200px-Dead_Sea.jpg" alt="Dead Sea">
+            <p>Latitude: 31.4667, Longitude: 35.4667</p>
+        </div>
+        <div class="attraction">
+            <h2>Masada National Park</h2>
+            <p>Masada National Park is a UNESCO World Heritage Site located on a plateau overlooking the Dead Sea.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Masada_National_Park.jpg/1200px-Masada_National_Park.jpg" alt="Masada National Park">
+            <p>Latitude: 31.4667, Longitude: 35.3667</p>
+        </div>
+        <div class="attraction">
+            <h2>Haifa</h2>
+            <p>Haifa is a city located on the northern coast of Israel, known for its stunning views and beautiful beaches.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/View_of_Haifa.jpg/1200px-View_of_Haifa.jpg" alt="Haifa">
+            <p>Latitude: 32.8167, Longitude: 34.9667</p>
+        </div>
+        <div class="attraction">
+            <h2>Ein Gedi</h2>
+            <p>Ein Gedi is a kibbutz located in the Judean Desert, known for its natural springs and stunning scenery.</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Ein_Gedi.jpg/1200px-Ein_Gedi.jpg" alt="Ein Gedi">
+            <p>Latitude: 31.45, Longitude: 35.45</p>
+        </div>
+    </div>
+    <div class="map">
+        <div id="map" style="width: 100%; height: 600px;"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([31.7793, 35.2297], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+            subdomains: ['a', 'b', 'c']
+        }).addTo(map);
+        var markers = [
+            [31.7793, 35.2297, 'Western Wall'],
+            [31.4667, 35.4667, 'Dead Sea'],
+            [31.4667, 35.3667, 'Masada National Park'],
+            [32.8167, 34.9667, 'Haifa'],
+            [31.45, 35.45, 'Ein Gedi']
+        ];
+        markers.forEach(function(marker) {
+            L.marker(marker.slice(0, 2)).addTo(map).bindPopup(marker[2]);
+        });
+    </script>
+</body>
+</html>
