@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Israel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+q4y1yZ4KJ2Y2nXQ4z4O0k5x6Q5E4N4M8Yq9fR8kU=" crossorigin=""/>
+<style>
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#333;}
+  header{background:#222;color:#fff;padding:1rem;text-align:center;}
+  .hero{background:url('https://source.unsplash.com/1600x900/?israel') no-repeat center center/cover;height:60vh;display:flex;align-items:center;justify-content:center;position:relative;}
+  .hero h1{font-size:4rem;background:rgba(0,0,0,0.5);padding:1rem;border-radius:5px;}
+  .section{padding:2rem 1rem;max-width:1200px;margin:auto;}
+  .section h2{margin-top:0;border-bottom:2px solid #ddd;padding-bottom:.5rem;}
+  .grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+  @media(min-width:768px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr);}}
+  .card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.1);transition:transform .2s;}
+  .card:hover{transform:scale(1.02);}
+  .card img{width:100%;height:200px;object-fit:cover;}
+  .card-content{padding:1rem;}
+  #map{height:400px;width:100%;border-radius:8px;margin-top:1rem;}
+  .footer{background:#222;color:#fff;text-align:center;padding:1rem;margin-top:2rem;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Israel Travel Guide</h1>
+</header>
+
+<section class="hero">
+  <h1>Discover Israel</h1>
+</section>
+
+<section class="section">
+  <h2>Top Attractions</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?jerusalem" alt="Jerusalem">
+      <div class="card-content">
+        <h3>Jerusalem</h3>
+        <p>The ancient city rich with history and spirituality.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?telaviv" alt="Tel Aviv">
+      <div class="card-content">
+        <h3>Tel Aviv</h3>
+        <p>Modern metropolis with vibrant nightlife and beaches.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?seaofgalilee" alt="Sea of Galilee">
+      <div class="card-content">
+        <h3>Sea of Galilee</h3>
+        <p>Scenic lake with historic sites and boat tours.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?redsea" alt="Red Sea">
+      <div class="card-content">
+        <h3>Dead Sea</h3>
+        <p>Famous for its salty waters and therapeutic mud.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?masada" alt="Masada">
+      <div class="card-content">
+        <h3>Masada</h3>
+        <p>An ancient fortress with breathtaking views.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Interactive Map</h2>
+  <div id="map"></div>
+</section>
+
+<section class="section">
+  <h2>Recommended Restaurants</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?restaurant" alt="Restaurant 1">
+      <div class="card-content">
+        <h3>Shuk HaCarmel Bistro</h3>
+        <p>Authentic Israeli flavors in Tel Aviv.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?food" alt="Restaurant 2">
+      <div class="card-content">
+        <h3>Masada Grill</h3>
+        <p>Traditional dishes with a view of the desert.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/600x400/?seafood" alt="Restaurant 3">
+      <div class="card-content">
+        <h3>Red Sea Seafood</h3>
+        <p>Fresh catch from the Red Sea.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Current Weather</h2>
+  <p>Weather information will be displayed here. (Placeholder)</p>
+</section>
+
+<section class="section">
+  <h2>Travel Tips</h2>
+  <ul>
+    <li>Carry a reusable water bottle – tap water is safe to drink.</li>
+    <li>Respect local customs, especially during religious holidays.</li>
+    <li>Use public transportation or ride‑hailing apps for city travel.</li>
+    <li>Pack light clothing for daytime and a jacket for cooler evenings.</li>
+    <li>Stay hydrated and use sunscreen in the desert regions.</li>
+  </ul>
+</section>
+
+<footer class="footer">
+  © 2026 Israel Travel Guide
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-oR+4pZK4qA6o8yq0C7hKfQpP5I3wQj5yN8R8+z5r1Xc=" crossorigin=""></script>
+<script>
+  var map = L.map('map').setView([31.7683, 35.2137], 7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  var attractions = [
+    {name: 'Jerusalem', coords: [31.7683, 35.2137]},
+    {name: 'Tel Aviv', coords: [32.0853, 34.7818]},
+    {name: 'Sea of Galilee', coords: [32.5326, 35.7776]},
+    {name: 'Dead Sea', coords: [31.5592, 35.4735]},
+    {name: 'Masada', coords: [31.9380, 35.7060]}
+  ];
+
+  attractions.forEach(function(attraction){
+    L.marker(attraction.coords).addTo(map)
