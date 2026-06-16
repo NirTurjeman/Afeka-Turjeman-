@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Israel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sG2qJzW9kX+Zl0NfBq5oLzQj5jMZV5sWv2ZcV5Y7eKz1l5uG6E1Kzj8f6YIhC5O" crossorigin=""/>
+<style>
+  body,html{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#333;}
+  header{position:relative;height:60vh;display:flex;align-items:center;justify-content:center;background:url('https://images.unsplash.com/photo-1544421045-1e5d7d4f0a12?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;overflow:hidden;}
+  header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);}
+  header h1{position:relative;font-size:4rem;color:#fff;text-align:center;z-index:1;}
+  main{max-width:1200px;margin:auto;padding:2rem;}
+  .section{margin-bottom:4rem;}
+  h2{font-size:2.5rem;margin-bottom:1rem;color:#222;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+  .card{background:#fff;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,.1);overflow:hidden;}
+  .card img{width:100%;height:180px;object-fit:cover;}
+  .card-content{padding:1rem;}
+  .card h3{margin:0 0 .5rem;font-size:1.5rem;}
+  .card p{margin:0;font-size:.95rem;line-height:1.4;}
+  #map{height:400px;width:100%;border-radius:8px;overflow:hidden;}
+  .restaurant{display:flex;gap:1rem;margin-bottom:1rem;}
+  .restaurant img{width:80px;height:80px;border-radius:8px;object-fit:cover;}
+  .restaurant-info{flex:1;}
+  .restaurant-info h4{margin:0;font-size:1.2rem;}
+  .restaurant-info p{margin:0;font-size:.9rem;color:#555;}
+  .weather{display:flex;flex-wrap:wrap;gap:1rem;}
+  .weather-box{flex:1 1 200px;background:#fff;border-radius:8px;padding:1rem;box-shadow:0 2px 6px rgba(0,0,0,.1);}
+  .weather-box h4{margin:0 0 .5rem;font-size:1.1rem;}
+  .weather-box p{margin:0;font-size:.95rem;}
+  @media(max-width:600px){
+    header h1{font-size:2.5rem;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Discover Israel</h1>
+</header>
+<main>
+  <!-- Attractions -->
+  <section class="section" id="attractions">
+    <h2>Top 5 Attractions</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519566487770-0d9b6c1f3d8c?auto=format&fit=crop&w=800&q=80" alt="Masada">
+        <div class="card-content">
+          <h3>Masada</h3>
+          <p>Historic fortress with breathtaking views of the Dead Sea.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1581526185262-6a3d2d1b9d5e?auto=format&fit=crop&w=800&q=80" alt="Jerusalem Old City">
+        <div class="card-content">
+          <h3>Jerusalem Old City</h3>
+          <p>Explore the spiritual heart of the world’s oldest cities.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589555073980-1b8c7b1c5e7b?auto=format&fit=crop&w=800&q=80" alt="Dead Sea">
+        <div class="card-content">
+          <h3>Dead Sea</h3>
+          <p>Float in the world’s saltiest lake and enjoy mineral mud.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1529106060835-4f4b1b3b4b6d?auto=format&fit=crop&w=800&q=80" alt="Tel Aviv Beach">
+        <div class="card-content">
+          <h3>Tel Aviv Beach</h3>
+          <p>Vibrant coastal city with lively nightlife and sandy shores.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1544238960-3b2a8e0f0b7e?auto=format&fit=crop&w=800&q=80" alt="Golan Heights">
+        <div class="card-content">
+          <h3>Golan Heights</h3>
+          <p>Explore rugged landscapes, ancient ruins, and vineyards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="section" id="map-section">
+    <h2>Explore the Map</h2>
+    <div id="map"></div>
+  </section>
+
+  <!-- Restaurants -->
+  <section class="section" id="restaurants">
+    <h2>Must‑Try Restaurants</h2>
+    <div class="restaurant">
+      <img src="https://images.unsplash.com/photo-1523986371872-9d3b2d4f9e3c?auto=format&fit=crop&w=400&q=80" alt="Miznon">
+      <div class="restaurant-info">
+        <h4>Miznon</h4>
+        <p>Jerusalem – Contemporary Israeli street food with a twist.</p>
+      </div>
+    </div>
+    <div class="restaurant">
+      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Taizu">
+      <div class="restaurant-info">
+        <h4>Taizu</h4>
+        <p>Tel Aviv – Asian fusion with a modern Israeli flair.</p>
+      </div>
+    </div>
+    <div class="restaurant">
+      <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=400&q=80" alt="Cafe Hillel">
+      <div class="restaurant-info">
+        <h4>Cafe Hillel</h4>
+        <p>Haifa – Classic Israeli café with fresh salads and juices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Weather -->
+  <section class="section" id="weather">
+    <h2>Current Weather</h2>
+    <div class="weather">
+      <div class="weather-box">
+        <h4>Jerusalem</h4>
+        <p>Temperature: 18°C</p>
+        <p>Condition: Partly Cloudy</p>
+      </div>
+      <div class="weather-box">
+        <h4>Tel Aviv</h4>
+        <p>Temperature: 20°C</p>
+        <p>Condition: Sunny</p>
+      </div>
+      <div class="weather-box">
+        <h4>Haifa</h4>
+        <p>Temperature: 17°C</p>
+        <p>Condition: Light Rain</
