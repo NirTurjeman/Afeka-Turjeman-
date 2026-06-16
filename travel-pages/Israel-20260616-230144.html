@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Israel: A Journey Through History, Culture, and Nature</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+body { margin:0; font-family:Arial, sans-serif; background:#f4f7fb; color:#222; }
+.hero { padding:80px 20px; text-align:center; color:white; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); }
+.hero h1 { font-size:48px; margin:0 0 15px; }
+.hero p { font-size:20px; max-width:800px; margin:auto; }
+.container { max-width:1150px; margin:40px auto; padding:0 20px; }
+.intro { background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); margin-bottom:30px; font-size:18px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+.card { background:white; border-radius:18px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.1); }
+.card img { width:100%; height:190px; object-fit:cover; display:block; }
+.card-body { padding:20px; }
+.card h3 { margin-top:0; }
+.map-section { margin-top:45px; }
+#map { width:100%; height:430px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.12); }
+footer { text-align:center; padding:30px; color:#777; }
+</style>
+</head>
+<body>
+<section class="hero">
+  <h1>Explore Israel: A Journey Through History, Culture, and Nature</h1>
+  <p>Discover the Land of the Bible and Modern Innovation</p>
+</section>
+
+<main class="container">
+  <section class="intro">Israel offers a unique blend of ancient heritage and cutting‑edge modernity. From the historic streets of Jerusalem to the sun‑kissed shores of Tel Aviv, this guide highlights five must‑visit attractions that showcase the country’s diverse landscapes, spiritual depth, and vibrant cities.</section>
+  <section class="grid">
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jerusalem_Old_City_view_from_Mount_of_Olives.jpg" alt="Jerusalem Old City">
+    <div class="card-body">
+      <h3>Jerusalem Old City</h3>
+      <p>A UNESCO World Heritage site, the Old City is a living mosaic of faith and history, featuring the Western Wall, the Church of the Holy Sepulchre, the Dome of the Rock, and bustling bazaars that have thrived for millennia.</p>
+      <small>📍 31.7767, 35.2344</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tel_Aviv_Beach.jpg" alt="Masada National Park">
+    <div class="card-body">
+      <h3>Masada National Park</h3>
+      <p>Perched on a granite plateau overlooking the Dead Sea, Masada is famed for its Roman fortifications and the story of Jewish resistance. A cable car or ancient stairway leads to the ruins and panoramic views.</p>
+      <small>📍 31.5624, 35.7195</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dead_Sea_by_David_Shankbone.jpg" alt="Tel Aviv Promenade (Tayelet)">
+    <div class="card-body">
+      <h3>Tel Aviv Promenade (Tayelet)</h3>
+      <p>Stretching along the Mediterranean coast, the Tayelet offers vibrant beach life, historic Bauhaus architecture, and a lively nightlife scene that reflects Israel’s youthful spirit.</p>
+      <small>📍 32.0853, 34.7818</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Masada_seen_from_above.jpg" alt="Dead Sea">
+    <div class="card-body">
+      <h3>Dead Sea</h3>
+      <p>The world’s lowest point, the Dead Sea provides a surreal experience with its hypersaline waters and mineral‑rich mud, perfect for relaxation and unique therapeutic treatments.</p>
+      <small>📍 31.5596, 35.473</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bahai_Gardens_Haifa.jpg" alt="Baha'i Gardens, Haifa">
+    <div class="card-body">
+      <h3>Baha'i Gardens, Haifa</h3>
+      <p>A stunning terraced garden overlooking the Mediterranean, the Baha'i Gardens are a testament to harmony and beauty, offering serene walking paths and a panoramic view of Haifa’s skyline.</p>
+      <small>📍 32.7949, 34.9965</small>
+    </div>
+  </div>
+</section>
+  <section class="map-section">
+    <h2>Attractions Map</h2>
+    <div id="map"></div>
+  </section>
+</main>
+
+<footer>Generated automatically with n8n AI Travel Generator</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.addEventListener("load", function () {
+  const map = L.map("map").setView([31.5, 34.8], 7);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "© OpenStreetMap"
+  }).addTo(map);
+
+  
+  L.marker([31.7767, 35.2344]).addTo(map).bindPopup("Jerusalem Old City");
+
+
+  L.marker([31.5624, 35.7195]).addTo(map).bindPopup("Masada National Park");
+
+
+  L.marker([32.0853, 34.7818]).addTo(map).bindPopup("Tel Aviv Promenade (Tayelet)");
+
+
+  L.marker([31.5596, 35.473]).addTo(map).bindPopup("Dead Sea");
+
+
+  L.marker([32.7949, 34.9965]).addTo(map).bindPopup("Baha'i Gardens, Haifa");
+
+
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 500);
+});
+</script>
+</body>
+</html>
