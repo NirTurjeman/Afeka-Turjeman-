@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israel Travel Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 24px;
+        }
+        .attractions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .attraction {
+            margin: 20px;
+            width: calc(33.33% - 40px);
+            background-color: #f7f7f7;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .attraction img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .attraction h2 {
+            margin-top: 0;
+        }
+        .map {
+            height: 600px;
+            width: 100%;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+</head>
+<body>
+    <div class="hero">
+        <h1>Israel Travel Guide</h1>
+        <p>Explore the beauty of Israel</p>
+    </div>
+    <div class="attractions">
+        <div class="attraction">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png" alt="Western Wall">
+            <h2>Western Wall</h2>
+            <p>The Western Wall, also known as the Wailing Wall, is a remnant of the Second Temple in Jerusalem.</p>
+            <p>Latitude: 31.4792, Longitude: 35.2147</p>
+        </div>
+        <div class="attraction">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png" alt="Dead Sea">
+            <h2>Dead Sea</h2>
+            <p>The Dead Sea is a saltwater lake in the Jordan Rift Valley, known for its unique properties and stunning scenery.</p>
+            <p>Latitude: 31.4667, Longitude: 35.4667</p>
+        </div>
+        <div class="attraction">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png" alt="Masada">
+            <h2>Masada</h2>
+            <p>Masada is an ancient fortress in the Judean Desert, known for its stunning views and historical significance.</p>
+            <p>Latitude: 31.4667, Longitude: 35.3667</p>
+        </div>
+        <div class="attraction">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png" alt="Haifa">
+            <h2>Haifa</h2>
+            <p>Haifa is a city in northern Israel, known for its stunning views of the Mediterranean Sea and its beautiful gardens.</p>
+            <p>Latitude: 32.8167, Longitude: 34.9667</p>
+        </div>
+        <div class="attraction">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png" alt="Eilat">
+            <h2>Eilat</h2>
+            <p>Eilat is a city in southern Israel, known for its stunning beaches and coral reefs.</p>
+            <p>Latitude: 29.5333, Longitude: 34.9667</p>
+        </div>
+    </div>
+    <div class="map">
+        <div id="map"></div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([31.5, 35], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+            subdomains: ['a', 'b', 'c']
+        }).addTo(map);
+        var attractions = [
+            {name: 'Western Wall', lat: 31.4792, lng: 35.2147, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png'},
+            {name: 'Dead Sea', lat: 31.4667, lng: 35.4667, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png'},
+            {name: 'Masada', lat: 31.4667, lng: 35.3667, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png'},
+            {name: 'Haifa', lat: 32.8167, lng: 34.9667, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png'},
+            {name: 'Eilat', lat: 29.5333, lng: 34.9667, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Israel_map.svg/1200px-Israel_map.svg.png'}
+        ];
+        attractions.forEach(function(attraction) {
+            L.marker([attraction.lat, attraction.lng]).addTo(map).bindPopup('<h2>' + attraction.name + '</h2><img src="' + attraction.image + '"><p>' + attraction.name + '</p>');
+        });
+    </script>
+</body>
+</html>
