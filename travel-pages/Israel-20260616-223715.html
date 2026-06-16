@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Israel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet" />
+<style>
+  body, html {margin:0; padding:0; font-family:Arial,Helvetica,sans-serif; line-height:1.6;}
+  header {background:url('https://images.unsplash.com/photo-1582105391706-2c9b1d5a7e7d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; color:white; height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative;}
+  header::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);}
+  header h1{position:relative;z-index:1;font-size:3rem;}
+  section{padding:2rem 1rem;}
+  .attractions{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+  .attraction{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+  .attraction img{width:100%;height:160px;object-fit:cover;}
+  .attraction h3{margin:0.5rem; font-size:1.2rem;}
+  .attraction p{margin:0.5rem; font-size:0.95rem;color:#555;}
+  #map{height:400px; width:100%; border-radius:8px;}
+  .restaurants, .weather, .tips{max-width:800px;margin:auto;}
+  .restaurant{margin-bottom:1rem;}
+  .weather-box{display:flex;align-items:center;gap:1rem;background:#f0f8ff;padding:1rem;border-radius:8px;}
+  .weather-box img{width:80px;height:80px;}
+  .tips ul{list-style:none;padding:0;}
+  .tips li{background:#fff8e1;border-left:5px solid #ffc107;padding:0.5rem 1rem;margin-bottom:0.5rem;border-radius:4px;}
+  @media(max-width:600px){
+    header h1{font-size:2rem;}
+    .weather-box{flex-direction:column;align-items:flex-start;}
+    .weather-box img{margin-bottom:0.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Discover Israel</h1>
+</header>
+
+<section class="attractions">
+  <div class="attraction" data-lat="31.7683" data-lng="35.2137">
+    <img src="https://images.unsplash.com/photo-1527888797776-3f5b7d1b7b6e?auto=format&fit=crop&w=400&q=80" alt="Jerusalem">
+    <h3>Jerusalem Old City</h3>
+    <p>Explore the historic heart of Jerusalem, home to the Western Wall, Church of the Holy Sepulchre, and bustling markets.</p>
+  </div>
+  <div class="attraction" data-lat="32.0853" data-lng="34.7818">
+    <img src="https://images.unsplash.com/photo-1519932639320-6a8b0f5c9b8c?auto=format&fit=crop&w=400&q=80" alt="Tel Aviv">
+    <h3>Tel Aviv Beachfront</h3>
+    <p>Enjoy vibrant nightlife, sandy beaches, and modern architecture along the Mediterranean coast.</p>
+  </div>
+  <div class="attraction" data-lat="31.9870" data-lng="35.7037">
+    <img src="https://images.unsplash.com/photo-1542823375-3e7c5c6a4d6c?auto=format&fit=crop&w=400&q=80" alt="Masada">
+    <h3>Masada</h3>
+    <p>A UNESCO World Heritage site featuring ancient fortifications and breathtaking desert views.</p>
+  </div>
+  <div class="attraction" data-lat="32.7948" data-lng="34.9894">
+    <img src="https://images.unsplash.com/photo-1527848687299-1e3b5b0f5c0b?auto=format&fit=crop&w=400&q=80" alt="Haifa Gardens">
+    <h3>Haifa Baha'i Gardens</h3>
+    <p>Stroll through terraced gardens overlooking the Mediterranean, a symbol of peace and unity.</p>
+  </div>
+  <div class="attraction" data-lat="31.5590" data-lng="35.4731">
+    <img src="https://images.unsplash.com/photo-1518709269401-9f2b8e2a5b6c?auto=format&fit=crop&w=400&q=80" alt="Dead Sea">
+    <h3>Dead Sea</h3>
+    <p>Float effortlessly in the salty waters and enjoy mineral-rich mud treatments.</p>
+  </div>
+</section>
+
+<section id="map"></section>
+
+<section class="restaurants">
+  <h2>Must‑Try Restaurants</h2>
+  <div class="restaurant"><strong>Taizu</strong> – Modern Asian cuisine in Tel Aviv.</div>
+  <div class="restaurant"><strong>Machneyuda</strong> – Vibrant Israeli flavors in Jerusalem.</div>
+  <div class="restaurant"><strong>Ouzeria</strong> – Mediterranean seafood in Haifa.</div>
+  <div class="restaurant"><strong>Hofesh</strong> – Fresh salads and mezze in Tel Aviv.</div>
+  <div class="restaurant"><strong>Shuk HaCarmel</strong> – Traditional market eateries.</div>
+</section>
+
+<section class="weather">
+  <h2>Current Weather in Israel</h2>
+  <div class="weather-box">
+    <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Sunny">
+    <div>
+      <strong>22 °C</strong> – Clear skies
+      <br>Humidity: 45%
+      <br>Wind: 10 km/h
+    </div>
+  </div>
+</section>
+
+<section class="tips">
+  <h2>Travel Tips</h2>
+  <ul>
+    <li>Respect local customs, especially in religious sites.</li>
+    <li>Carry a reusable water bottle; tap water is safe.</li>
+    <li>Learn basic Hebrew or Arabic greetings – locals appreciate the effort.</li>
+    <li>Use public transport or shared taxis for cost‑effective travel.</li>
+    <li>Plan visits to the Dead Sea early in the morning to avoid crowds.</li>
+  </ul>
+</section>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([31.7683, 35.2137], 7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  document.querySelectorAll('.attraction').forEach(el => {
+    const lat = parseFloat(el.dataset.lat);
+    const lng = parseFloat(el.dataset.lng);
+    const title = el.querySelector('h3').textContent;
+    L.marker([lat, lng]).addTo(map)
+      .bindPopup(`<strong>${title}</strong>`);
+  });
+</script>
+</body>
+</html>
