@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Israel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+body { margin:0; font-family:Arial, sans-serif; background:#f4f7fb; color:#222; }
+.hero { padding:80px 20px; text-align:center; color:white; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); }
+.hero h1 { font-size:48px; margin:0 0 15px; }
+.hero p { font-size:20px; max-width:800px; margin:auto; }
+.container { max-width:1150px; margin:40px auto; padding:0 20px; }
+.intro { background:white; padding:25px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.08); margin-bottom:30px; font-size:18px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+.card { background:white; border-radius:18px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.1); }
+.card img { width:100%; height:190px; object-fit:cover; display:block; }
+.card-body { padding:20px; }
+.card h3 { margin-top:0; }
+.map-section { margin-top:45px; }
+#map { width:100%; height:430px; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.12); }
+footer { text-align:center; padding:30px; color:#777; }
+</style>
+</head>
+<body>
+<section class="hero">
+  <h1>Explore Israel</h1>
+  <p>A Journey Through History, Culture, and Nature</p>
+</section>
+
+<main class="container">
+  <section class="intro">Discover the diverse landscapes, rich history, and vibrant culture of Israel. From ancient holy sites to modern cities, this guide highlights five must-see attractions that capture the essence of the region.</section>
+  <section class="grid">
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jerusalem_Old_City_view_from_Mount_of_Olives.jpg" alt="Jerusalem Old City">
+    <div class="card-body">
+      <h3>Jerusalem Old City</h3>
+      <p>The historic heart of Jerusalem, home to the Western Wall, Church of the Holy Sepulchre, and the Al-Aqsa Mosque, offering a profound cultural and religious experience.</p>
+      <small>📍 31.7767, 35.2356</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tel_Aviv_Beach.jpg" alt="Masada">
+    <div class="card-body">
+      <h3>Masada</h3>
+      <p>An iconic fortress perched on a mountaintop overlooking the Dead Sea, renowned for its dramatic scenery and historical significance.</p>
+      <small>📍 31.9658, 35.7056</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dead_Sea_by_David_Shankbone.jpg" alt="Dead Sea">
+    <div class="card-body">
+      <h3>Dead Sea</h3>
+      <p>The lowest point on Earth, famous for its hypersaline waters and therapeutic mud, providing a unique floating experience.</p>
+      <small>📍 31.5593, 35.4735</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Masada_seen_from_above.jpg" alt="Tel Aviv Beaches">
+    <div class="card-body">
+      <h3>Tel Aviv Beaches</h3>
+      <p>Stretching along the Mediterranean coast, these lively beaches blend sun, sand, and vibrant nightlife in the modern city of Tel Aviv.</p>
+      <small>📍 32.0853, 34.7818</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bahai_Gardens_Haifa.jpg" alt="Bahá'í Gardens, Haifa">
+    <div class="card-body">
+      <h3>Bahá'í Gardens, Haifa</h3>
+      <p>A meticulously landscaped terraced garden that showcases the harmony of nature and architecture, offering panoramic views of Haifa and the Mediterranean.</p>
+      <small>📍 32.7944, 34.9999</small>
+    </div>
+  </div>
+</section>
+  <section class="map-section">
+    <h2>Attractions Map</h2>
+    <div id="map"></div>
+  </section>
+</main>
+
+<footer>Generated automatically with n8n AI Travel Generator</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.addEventListener("load", function () {
+  const map = L.map("map").setView([31.7683, 35.2137], 7);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "© OpenStreetMap"
+  }).addTo(map);
+
+  
+  L.marker([31.7767, 35.2356]).addTo(map).bindPopup("Jerusalem Old City");
+
+
+  L.marker([31.9658, 35.7056]).addTo(map).bindPopup("Masada");
+
+
+  L.marker([31.5593, 35.4735]).addTo(map).bindPopup("Dead Sea");
+
+
+  L.marker([32.0853, 34.7818]).addTo(map).bindPopup("Tel Aviv Beaches");
+
+
+  L.marker([32.7944, 34.9999]).addTo(map).bindPopup("Bahá'í Gardens, Haifa");
+
+
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 500);
+});
+</script>
+</body>
+</html>
