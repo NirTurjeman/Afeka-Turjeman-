@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Discover Israel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+}
+.hero {
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+.hero h1 {
+  font-size: 48px;
+  margin: 0 0 15px;
+}
+.hero p {
+  font-size: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+.container {
+  max-width: 1150px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.intro {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+.card-body {
+  padding: 20px;
+}
+.card h3 {
+  margin-top: 0;
+}
+.map-section {
+  margin-top: 45px;
+}
+#map {
+  width: 100%;
+  height: 430px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+</style>
+</head>
+
+<body>
+<section class="hero">
+  <h1>Discover Israel</h1>
+  <p>A Journey Through History and Culture</p>
+</section>
+
+<main class="container">
+  <section class="intro">
+    Israel is a country with a rich history, diverse culture, and breathtaking landscapes. From the ancient city of Jerusalem to the vibrant city of Tel Aviv, there's something for everyone in this fascinating country.
+  </section>
+
+  <section class="grid">
+    
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jerusalem_Old_City_view_from_Mount_of_Olives.jpg" alt="The Western Wall">
+    <div class="card-body">
+      <h3>The Western Wall</h3>
+      <p>One of the holiest sites in Judaism, the Western Wall is a must-visit for anyone interested in history and culture.</p>
+      <small>📍 31.478, 35.214</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tel_Aviv_Beach.jpg" alt="The Church of the Holy Sepulchre">
+    <div class="card-body">
+      <h3>The Church of the Holy Sepulchre</h3>
+      <p>A UNESCO World Heritage Site, this church is believed to be the site of Jesus' crucifixion and burial.</p>
+      <small>📍 31.778, 35.229</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dead_Sea_by_David_Shankbone.jpg" alt="The Israel Museum">
+    <div class="card-body">
+      <h3>The Israel Museum</h3>
+      <p>Home to a vast collection of art and artifacts from around the world, including a vast collection of Jewish art and artifacts.</p>
+      <small>📍 31.783, 35.225</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Masada_seen_from_above.jpg" alt="The Dead Sea">
+    <div class="card-body">
+      <h3>The Dead Sea</h3>
+      <p>The lowest point on Earth, the Dead Sea is a unique and breathtaking natural wonder.</p>
+      <small>📍 31.45, 35.55</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bahai_Gardens_Haifa.jpg" alt="Masada National Park">
+    <div class="card-body">
+      <h3>Masada National Park</h3>
+      <p>A ancient fortress built by King Herod, Masada is a UNESCO World Heritage Site and a must-visit for anyone interested in history and archaeology.</p>
+      <small>📍 31.483, 35.283</small>
+    </div>
+  </div>
+
+  </section>
+
+  <section class="map-section">
+    <h2>Attractions Map</h2>
+    <div id="map"></div>
+  </section>
+</main>
+
+<footer>
+  Generated automatically with n8n AI Travel Generator
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+window.addEventListener("load", function () {
+  const map = L.map("map").setView([31.46, 34.85], 7);
+
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "© OpenStreetMap"
+  }).addTo(map);
+
+  
+  L.marker([31.478, 35.214]).addTo(map).bindPopup("The Western Wall");
+
+
+  L.marker([31.778, 35.229]).addTo(map).bindPopup("The Church of the Holy Sepulchre");
+
+
+  L.marker([31.783, 35.225]).addTo(map).bindPopup("The Israel Museum");
+
+
+  L.marker([31.45, 35.55]).addTo(map).bindPopup("The Dead Sea");
+
+
+  L.marker([31.483, 35.283]).addTo(map).bindPopup("Masada National Park");
+
+
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 500);
+});
+</script>
+</body>
+</html>
