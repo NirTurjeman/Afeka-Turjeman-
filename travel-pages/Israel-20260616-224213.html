@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore France</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+vZ/5N6O8b8y6pKqg6i0cJxVQwV0x3wNfB1Z+0p9k=" crossorigin=""/>
+<style>
+    body, html {margin:0; padding:0; font-family:Arial,Helvetica,sans-serif; line-height:1.6; color:#333;}
+    header {position:relative; height:60vh; background:url('https://source.unsplash.com/1600x900/?paris,france') center/cover no-repeat; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center;}
+    header h1 {font-size:3rem; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,.5);}
+    section {padding:2rem 1rem;}
+    h2 {font-size:2rem; margin-bottom:1rem; color:#222;}
+    .grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem;}
+    .card {background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,.1); transition:transform .2s;}
+    .card:hover {transform:scale(1.02);}
+    .card img {width:100%; height:180px; object-fit:cover;}
+    .card-content {padding:1rem;}
+    .card-content h3 {margin:0 0 .5rem; font-size:1.25rem;}
+    .card-content p {font-size:.95rem;}
+    #map {height:400px; width:100%; border-radius:8px;}
+    .restaurants, .weather, .tips {background:#f9f9f9; border-radius:8px; padding:1.5rem;}
+    .restaurants ul, .tips ul {list-style:none; padding:0;}
+    .restaurants li, .tips li {margin-bottom:.8rem;}
+    footer {text-align:center; padding:1rem; background:#222; color:#fff; font-size:.9rem;}
+    @media(max-width:768px){
+        header h1 {font-size:2rem;}
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Discover France</h1>
+</header>
+
+<section>
+    <h2>Top 5 Attractions</h2>
+    <div class="grid">
+        <article class="card">
+            <img src="https://source.unsplash.com/400x300/?eiffel-tower" alt="Eiffel Tower">
+            <div class="card-content">
+                <h3>Eiffel Tower</h3>
+                <p>Experience the iconic landmark in Paris, offering panoramic city views.</p>
+            </div>
+        </article>
+        <article class="card">
+            <img src="https://source.unsplash.com/400x300/?loire-valley" alt="Loire Valley">
+            <div class="card-content">
+                <h3>Loire Valley</h3>
+                <p>Explore historic châteaux and lush vineyards along the Loire River.</p>
+            </div>
+        </article>
+        <article class="card">
+            <img src="https://source.unsplash.com/400x300/?nice-beach" alt="Nice Beach">
+            <div class="card-content">
+                <h3>Nice Beach</h3>
+                <p>Relax on the Mediterranean coast in the vibrant city of Nice.</p>
+            </div>
+        </article>
+        <article class="card">
+            <img src="https://source.unsplash.com/400x300/?mont-saint-michel" alt="Mont Saint-Michel">
+            <div class="card-content">
+                <h3>Mont Saint-Michel</h3>
+                <p>Visit the medieval abbey perched on a rocky island.</p>
+            </div>
+        </article>
+        <article class="card">
+            <img src="https://source.unsplash.com/400x300/?corsica" alt="Corsica">
+            <div class="card-content">
+                <h3>Corsica</h3>
+                <p>Discover the rugged coastline and unique culture of the island.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section>
+    <h2>Where You Are</h2>
+    <div id="map"></div>
+</section>
+
+<section class="restaurants">
+    <h2>Must‑Try Restaurants</h2>
+    <ul>
+        <li>Le Cinq – 5 Michelin stars, Paris.</li>
+        <li>La Périgue – Provençal cuisine, Avignon.</li>
+        <li>Le Relais de la Poste – Traditional French, Lyon.</li>
+        <li>Chez Lolo – Seafood, Marseille.</li>
+        <li>La Table de l'Artiste – Modern gastronomy, Bordeaux.</li>
+    </ul>
+</section>
+
+<section class="weather">
+    <h2>Current Weather in Paris</h2>
+    <p>Loading weather data…</p>
+</section>
+
+<section class="tips">
+    <h2>Travel Tips</h2>
+    <ul>
+        <li>Best time to visit: May to September.</li>
+        <li>Public transport: Use the metro and regional trains.</li>
+        <li>Language: Basic French phrases help.</li>
+        <li>Safety: Keep valuables secure in crowded areas.</li>
+        <li>Currency: Euro (€) – cash and cards accepted.</li>
+    </ul>
+</section>
+
+<footer>
+    © 2026 France Travel Guide
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j8n9K+6Yh5Z8q3vY+M0qDqgHk3DkN7z0i2c0YpI=" crossorigin=""></script>
+<script>
+    const map = L.map('map').setView([46.2276, 2.2137], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.marker([48.8566, 2.3522]).addTo(map)
+        .bindPopup('<b>Paris</b><br>France\'s capital city')
+        .openPopup();
+</script>
+</body>
+</html>
